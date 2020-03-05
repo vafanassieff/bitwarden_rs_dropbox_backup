@@ -17,12 +17,12 @@ services:
       SIGNUPS_ALLOWED: 'true'
 
   bitwarden_rs_dropbox:
-    image: bitwarden_rs_dropbox:dev
+    image: vafanassieff/bitwarden_rs_dropbox
     container_name: bitwarden_rs_dropbox
     restart: always
     volumes:
-      # - /etc/timezone:/etc/timezone:ro
-      # - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
       - bitwarden:/data
     environment:
       - DROPBOX_ACCESS_TOKEN=xxx
