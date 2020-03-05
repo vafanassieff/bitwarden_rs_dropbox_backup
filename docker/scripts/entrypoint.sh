@@ -7,8 +7,12 @@ if [ -z "${DROPBOX_ACCESS_TOKEN}" ]; then
     exit
 fi
 
-echo "Installing crontab ... ${BACKUP_CRON}"
-echo "${BACKUP_CRON} /backup.sh" > /etc/crontabs/root
+if [ -n "${NO_INCREMENT}" ]; then
+    echo "Only the last version of backup will exist"
+fi
+
+echo "Installing crontab ... ${CRON_BACKUP}"
+echo "${CRON_BACKUP} /backup.sh" > /etc/crontabs/root
 
 /backup.sh
 

@@ -14,6 +14,7 @@ Run this image alongside your bitwarden_rs container for automated nightly (1AM 
 | `DB_PATH` | sqlite db path in container | `/data/db.sqlite3`
 | `DROPBOX_ACCESS_TOKEN` | dropbox access token | `None`
 | `DROPBOX_PATH` | path in the dropbox folder | `/`
+| `NO_INCREMENT` | Increment file wit date | `None`
 
 ### Generating Dropbox Access Token
 1. Visit: https://www.dropbox.com/developers/apps

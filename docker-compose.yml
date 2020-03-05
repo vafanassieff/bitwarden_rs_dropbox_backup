@@ -27,5 +27,6 @@ services:
     environment:
       - DROPBOX_ACCESS_TOKEN=xxx
       - DB_PATH=/data/db.sqlite3
-      - BACKUP_CRON=* * * * *
+      - CRON_BACKUP=* * * * *
       - DROPBOX_PATH=/
+      - NO_INCREMENT="true"
