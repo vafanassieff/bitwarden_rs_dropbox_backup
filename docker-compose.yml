@@ -1,10 +1,31 @@
-version: '3.1'
+version: '3.7'
+
+volumes:
+  bitwarden:
+
 services:
-  bitwarden_dropbox_backup:
-    image: shivpatel/bitwarden_rs_dropbox_backup:latest
+  bitwarden_rs:
+    image: bitwardenrs/server
+    container_name: bitwarden_rs
+    restart: always
+    ports:
+      - 8081:80
+    volumes:
+      - bitwarden:/data
+    environment:
+      WEBSOCKET_ENABLED: 'true'
+      SIGNUPS_ALLOWED: 'true'
+
+  bitwarden_rs_dropbox:
+    image: bitwarden_rs_dropbox:dev
+    container_name: bitwarden_rs_dropbox
     restart: always
     volumes:
-      - ./db.sqlite3:/db.sqlite3
+      # - /etc/timezone:/etc/timezone:ro
+      # - /etc/localtime:/etc/localtime:ro
+      - bitwarden:/data
     environment:
       - DROPBOX_ACCESS_TOKEN=xxx
-      - BACKUP_ENCRYPTION_KEY=xxx
+      - DB_PATH=/data/db.sqlite3
+      - BACKUP_CRON=* * * * *
+      - DROPBOX_PATH=/
